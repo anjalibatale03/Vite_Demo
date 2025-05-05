@@ -41,12 +41,11 @@ function Navbar({ darkMode, setDarkMode }) {
     <AppBar
       position="static"
       sx={{
-        width: "100vw",
         backgroundColor: darkMode ? "black" : "white", // Fix dark mode background here
         color: darkMode ? "white" : "black", // Text color should also switch
       }}
     >
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box
           sx={{
             display: "inline-flex",
