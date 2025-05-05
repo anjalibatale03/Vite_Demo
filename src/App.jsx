@@ -1,6 +1,5 @@
-// src/App.jsx
 import { useState, useMemo } from "react";
-import { Routes, Route } from "react-router-dom"; // No Router here!
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
@@ -9,6 +8,7 @@ import Login from "./Componenets/Login/Login";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 🔐 Track login
 
   const theme = useMemo(
     () =>
@@ -23,18 +23,22 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div style={{ display: "flex", minHeight: "100vh" }}>
-        <Sidebar darkMode={darkMode} />
-        <div style={{ flex: 1 }}>
-          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          <Routes>
-            <Route path="/Dashboard" element={<Dashboard  darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          </Routes>
-          <Routes>
-            <Route path="/Login" element={<Login  darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          </Routes>
+
+      {!isLoggedIn ? (
+        // 🔐 Show login only
+        <Login setIsLoggedIn={setIsLoggedIn} darkMode={darkMode} setDarkMode={setDarkMode} />
+      ) : (
+        // 🧭 Main App Layout after login
+        <div style={{ display: "flex", minHeight: "100vh" }}>
+          <Sidebar darkMode={darkMode} />
+          <div style={{ flex: 1 }}>
+            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Routes>
+              <Route path="/Dashboard" element={<Dashboard darkMode={darkMode} setDarkMode={setDarkMode} />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      )}
     </ThemeProvider>
   );
 }
