@@ -59,8 +59,11 @@ function App() {
             <Route path="/alert-panel" element={<AlertPanel />} />
           </Routes>
         </div>
-      </Router>
-    </ThemeProvider>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Navbar />
+        </div>
+      </div> */}
+    </>
   );
 }
 
