@@ -5,7 +5,7 @@ import Spero from '../../assets/spero1.png';
 
 
 
-function Login({setIsLoggedIn}) {
+function Login({ setIsLoggedIn }) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -125,7 +125,7 @@ function Login({setIsLoggedIn}) {
                         <Button
                             fullWidth
                             variant="contained"
-                              onClick={() => setIsLoggedIn(true)}
+                            onClick={() => setIsLoggedIn(true)}
                             sx={{
                                 mt: 2,
                                 width: '50%',
@@ -143,21 +143,21 @@ function Login({setIsLoggedIn}) {
                         </Button>
 
                         <Box
-    component="img"
-    src={Spero}
-    alt="Spero Logo"
-    sx={{
-      width: '100px',
-      mt: 5,
-    }}
-  />
+                            component="img"
+                            src={Spero}
+                            alt="Spero Logo"
+                            sx={{
+                                width: '100px',
+                                mt: 5,
+                            }}
+                        />
                     </Box>
-                
-                
-                
+
+
+
                 </Box>
 
-                
+
 
             </Box>
         </Box>
