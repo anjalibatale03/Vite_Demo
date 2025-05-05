@@ -16,10 +16,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Navbar() {
+function Navbar({ darkMode, setDarkMode }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,10 +42,8 @@ function Navbar() {
       position="static"
       sx={{
         width: "100vw",
-        backgroundColor: darkMode ? "white" : "black",
-        // backgroundColor: "black",
-        color: "white",
-        // color: darkMode ? "white" : "black",
+        backgroundColor: darkMode ? "black" : "white", // Fix dark mode background here
+        color: darkMode ? "white" : "black", // Text color should also switch
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
@@ -57,14 +54,16 @@ function Navbar() {
             paddingX: "10px",
             paddingY: "3px",
             borderRadius: "40px",
-            background: "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)",
-            border: "2px solid #5BB9B4", 
+            background: darkMode
+              ? "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)"
+              : "linear-gradient(90deg, #FFFFFF 0%, #F3F3F3 100%)", // Gradient for dark mode
+            border: darkMode ? "2px solid #5BB9B4" : "2px solid #1C3B52", // Adjust border color
             gap: "8px",
           }}
         >
           <Typography
             sx={{
-              color: "#E5F3F5", 
+              color: darkMode ? "#E5F3F5" : "#333", // Adjust text color for dark mode
               fontSize: "20px",
               fontWeight: 400,
               fontFamily: "Roboto, sans-serif",
@@ -74,7 +73,7 @@ function Navbar() {
           </Typography>
           <Typography
             sx={{
-              color: "#E5F3F5",
+              color: darkMode ? "#E5F3F5" : "#333", // Adjust text color for dark mode
               fontSize: "24px",
               fontWeight: 700,
               fontFamily: "Roboto, sans-serif",
@@ -86,7 +85,7 @@ function Navbar() {
 
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center", gap: 2 }}>
           {pages.map((page) => (
-            <Button key={page} sx={{ color: "inherit" }}>
+            <Button key={page} sx={{ color: darkMode ? "white" : "black" }}>
               {page}
             </Button>
           ))}
