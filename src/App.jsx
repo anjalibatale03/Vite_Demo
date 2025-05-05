@@ -1,27 +1,41 @@
-import { Routes, Route } from "react-router-dom";
+// src/App.jsx
+import { useState, useMemo } from "react";
+import { Routes, Route } from "react-router-dom"; // No Router here!
+import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
+import Dashboard from "./Componenets/Dashboard/Dashboard";
 import Login from "./Componenets/Login/Login";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: darkMode ? "dark" : "light",
+        },
+      }),
+    [darkMode]
+  );
 
   return (
- 
-      <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        {/* Add more routes here */}
-      </Routes>
-{/* 
-      <div style={{ display: "flex", height: "100vh" }}>
-        <div style={{ position: "fixed", left: 0, top: 0 }}>
-          <Sidebar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div style={{ display: "flex", minHeight: "100vh" }}>
+        <Sidebar darkMode={darkMode} />
+        <div style={{ flex: 1 }}>
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Routes>
+            <Route path="/Dashboard" element={<Dashboard  darkMode={darkMode} setDarkMode={setDarkMode} />} />
+          </Routes>
+          <Routes>
+            <Route path="/Login" element={<Login  darkMode={darkMode} setDarkMode={setDarkMode} />} />
+          </Routes>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Navbar />
-        </div>
-      </div> */}
-    </>
+      </div>
+    </ThemeProvider>
   );
 }
 
