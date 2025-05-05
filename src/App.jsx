@@ -1,29 +1,66 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
 import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
 
 function App() {
-  const path = window.location.pathname;
+  const [isAlertPanel, setIsAlertPanel] = useState(false);
+
+  const LocationTracker = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+      setIsAlertPanel(location.pathname === "/alert-panel");
+    }, [location]);
+
+    return null;
+  };
+
+  ///// DARK MODE
+  // Retrieve the dark mode preference from localStorage, default to false (light mode)
+  const storedDarkMode = localStorage.getItem("darkMode") === "true";
+  const [darkMode, setDarkMode] = useState(storedDarkMode);
+
+  // Memoized theme to prevent recreation on each render
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: darkMode ? "dark" : "light",
+        },
+      }),
+    [darkMode]
+  );
+
+  // Save darkMode preference to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
 
   return (
-    <Router>
-      <div style={{ backgroundColor: "black", minHeight: "100vh", color: "white" }}>
-        {path !== "/alert-panel" && (
-          <div style={{ position: "fixed", left: 0, top: 0 }}>
-            <Sidebar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <LocationTracker />
+        <div style={{ backgroundColor: "black", minHeight: "100vh", color: "white" }}>
+          {!isAlertPanel && (
+            <div style={{ position: "fixed", left: 0, top: 0 }}>
+              <Sidebar />
+            </div>
+          )}
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
           </div>
-        )}
 
-        <div style={{ display: "flex", flexDirection: "column", }}>
-          <Navbar />
+          <Routes>
+            <Route path="/alert-panel" element={<AlertPanel />} />
+          </Routes>
         </div>
-
-        <Routes>
-          <Route path="/alert-panel" element={<AlertPanel />} />
-        </Routes>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 
