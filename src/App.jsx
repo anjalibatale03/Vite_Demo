@@ -8,12 +8,12 @@ function App() {
     <Router>
       {/* <Navbar />
       <Sidebar /> */}
-      <div style={{ display: "flex", height: "100vh" }}>
+      <div style={{ backgroundColor: "black", minHeight: "100vh", color: "white" }}>
         <div style={{ position: "fixed", left: 0, top: 0 }}>
           <Sidebar />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", flexDirection: "column" ,}}>
           <Navbar />
         </div>
       </div>

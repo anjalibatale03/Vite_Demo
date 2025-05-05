@@ -5,21 +5,19 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Toolbar,
     Typography,
     Box,
 } from "@mui/material";
-import { FaHome, FaCloudSun, FaCog, FaUsers } from "react-icons/fa";
-import { IoMdListBox } from "react-icons/io";
-import { MdReport } from "react-icons/md";
-
+import { FaCloudSun } from "react-icons/fa";
+ 
 const menuItems = [
     { text: "Weather Forecast", icon: <FaCloudSun />, id: "weather" },
-    { text: "Heat Watch", icon: <FaHome />, id: "heat-watch" },
-    { text: "Cyclone", icon: <IoMdListBox />, id: "cyclone" },
-    { text: "Drought", icon: <MdReport />, id: "drought" },
-    { text: "Flood Control", icon: <FaUsers />, id: "flood-control" },
-    { text: "Service Wise", icon: <FaCog />, id: "service-wise" },
+    { text: "Heat Watch", icon: <FaCloudSun />, id: "heat-watch" },
+    { text: "Cyclone", icon: <FaCloudSun />, id: "cyclone" },
+    { text: "Drought", icon: <FaCloudSun />, id: "drought" },
+    { text: "Nowcast Weather", icon: <FaCloudSun />, id: "Nowcast Weather" },
+    { text: "Flood Forecast", icon: <FaCloudSun />, id: "flood-control" },
+    { text: "Drinking Water Stress", icon: <FaCloudSun />, id: "service-wise" },
 ];
 
 const Sidebar = () => {
@@ -40,33 +38,21 @@ const Sidebar = () => {
                         width: open ? 200 : 50,
                         height: "auto",
                         maxHeight: "100vh",
-                        boxSizing: "border-box",
-                        background: "linear-gradient(to bottom, #38bdf8, #2563eb)",
-                        color: "white",
+                        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                        background: "linear-gradient(to bottom, #5FECC8, rgba(95, 236, 200, 0.05))",
+                        border: "1px solid rgba(255, 255, 255, 0.5)",
+                        color: "#000",
                         borderRadius: "30px",
                         flexDirection: "column",
                         paddingTop: 2,
                         transition: "width 0.5s ease-in-out",
                         overflowX: "hidden",
                         paddingBottom: 3,
-                        marginTop: "8em",
+                        marginTop: "7em",
                         marginLeft: "1em",
                     },
                 }}
             >
-                <Toolbar>
-                    <Typography
-                        variant="h6"
-                        sx={{
-                            fontWeight: "bold",
-                            opacity: open ? 1 : 0,
-                            transition: "opacity 0.4s ease-in-out",
-                            whiteSpace: "nowrap",
-                        }}
-                    >
-                        {open && "Spero DMS"}
-                    </Typography>
-                </Toolbar>
                 <List sx={{ width: "100%", padding: 0 }}>
                     {menuItems.map((item, index) => (
                         <ListItemButton

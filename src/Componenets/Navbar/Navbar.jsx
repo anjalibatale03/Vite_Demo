@@ -10,11 +10,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-const pages = ["Products", "Pricing", "Blog", "Contact"];
+const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -44,32 +43,47 @@ function Navbar() {
       position="static"
       sx={{
         width: "100vw",
-        backgroundColor: darkMode ? "#333" : "#fff",
-        color: darkMode ? "white" : "black",
+        backgroundColor: darkMode ? "white" : "black",
+        // backgroundColor: "black",
+        color: "white",
+        // color: darkMode ? "white" : "black",
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
-        {/* Left: Logo */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <AdbIcon sx={{ mr: 1 }} />
+        <Box
+          sx={{
+            display: "inline-flex",
+            alignItems: "center",
+            paddingX: "10px",
+            paddingY: "3px",
+            borderRadius: "40px",
+            background: "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)",
+            border: "2px solid #5BB9B4", 
+            gap: "8px",
+          }}
+        >
           <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
             sx={{
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-              color: "inherit",
+              color: "#E5F3F5", 
+              fontSize: "20px",
+              fontWeight: 400,
+              fontFamily: "Roboto, sans-serif",
             }}
           >
-            LOGO
+            Spero
+          </Typography>
+          <Typography
+            sx={{
+              color: "#E5F3F5",
+              fontSize: "24px",
+              fontWeight: 700,
+              fontFamily: "Roboto, sans-serif",
+            }}
+          >
+            DMS
           </Typography>
         </Box>
 
-        {/* Middle: Desktop Menu */}
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center", gap: 2 }}>
           {pages.map((page) => (
             <Button key={page} sx={{ color: "inherit" }}>
@@ -78,14 +92,11 @@ function Navbar() {
           ))}
         </Box>
 
-        {/* Right: Dark Mode Toggle & Avatar */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          {/* Dark Mode Toggle */}
           <IconButton onClick={toggleDarkMode} color="inherit">
             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
 
-          {/* Mobile Menu */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
@@ -99,7 +110,6 @@ function Navbar() {
             </Menu>
           </Box>
 
-          {/* Avatar Menu */}
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="User" src="/static/images/avatar/1.jpg" />
