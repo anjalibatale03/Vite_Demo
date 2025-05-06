@@ -1,25 +1,36 @@
 import React from "react";
-// pages/Dashboard.jsx
 import { Grid, Box } from "@mui/material";
-import SopTask from "../SOP/SopTask"
+import SopTask from "../SOP/SopTask";
 import CommentsPanel from "../SOP/CommentsPanel";
 import IncidentDetails from "../SOP/IncidentDetails";
+import Footer from "../Footer/Footer";
 
-function Dashboard(darkMode, setDarkMode) {
+function Dashboard({ darkMode, setDarkMode }) {
   return (
-    <Box sx={{ padding: 3, backgroundColor: "#0a1929", minHeight: "100vh" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
-          <SopTask />
+    <>
+      <Box
+        sx={{
+          px: { xs: 2, sm: 3, md: 4 },
+          py: { xs: 2, sm: 3 },
+          backgroundColor: darkMode ? "#0a1929" : "#f5f5f5",
+          minHeight: "100vh",
+          transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-out", // 👈 Add this
+        }}
+      >
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={9}>
+            <SopTask darkMode={darkMode} setDarkMode={setDarkMode} />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <CommentsPanel darkMode={darkMode} setDarkMode={setDarkMode} />
+          </Grid>
+          <Grid item xs={12}>
+            <IncidentDetails darkMode={darkMode} setDarkMode={setDarkMode} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <CommentsPanel />
-        </Grid>
-        <Grid item xs={12}>
-          <IncidentDetails />
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+      <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
+    </>
   );
 }
 

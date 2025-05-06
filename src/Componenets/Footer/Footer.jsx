@@ -1,32 +1,32 @@
-import Typography from '@mui/material/Typography';
+import { Box, Typography } from '@mui/material';
 
-export default function Navbar() {
-
+export default function Footer({ darkMode }) {
     return (
-        <div
-            style={{
+        <Box
+            sx={{
                 position: 'fixed',
                 bottom: 0,
                 width: '100%',
                 zIndex: 1000,
-                background: "#1A1D33",
-                color: 'white',
-                display: "flex",
+                backgroundColor: darkMode ? "#0a1929" : "#f5f5f5",
+                color: darkMode ? 'white' : 'black',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                py: 1,
             }}
         >
-            {/* <img style={{ height: '30px', width: '76px', marginTop: "2px", marginLeft: "15px", color: "#ffffff" }} src={Logo} alt="Spero" /> */}
-
-            <Typography variant="subtitle2" component="div" align="center"
+            <Typography
+                variant="subtitle2"
+                align="center"
                 sx={{
-                    flexGrow: 1,
                     fontFamily: 'sans-serif',
                     fontStyle: 'normal',
-                    color: 'white',
                     textDecoration: 'none',
-                    marginTop: '4px'
-                }}>
+                }}
+            >
                 Powered by Spero 2025
             </Typography>
-        </div>
+        </Box>
     );
 }
