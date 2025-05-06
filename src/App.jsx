@@ -3,8 +3,12 @@ import { Routes, Route, useNavigate ,useLocation} from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
+<<<<<<< Updated upstream
 import Footer from "./Componenets/Footer/Footer";
 import Dashboard from "./Componenets/Dashboard/Dashboard";
+=======
+import Dashboard from "./Componenets/SOP/Dashboard";
+>>>>>>> Stashed changes
 import Login from "./Componenets/Login/Login";
 import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
 
