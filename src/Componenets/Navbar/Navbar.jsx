@@ -12,60 +12,56 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
-const pages = [];
+const pages = []; // Add pages here if needed
 const settings = ["Profile", "Logout"];
 
-function Navbar({ darkMode, setDarkMode }) {
+const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseMenu = () => {
     setAnchorElNav(null);
     setAnchorElUser(null);
-  };
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
   };
 
   return (
     <AppBar
       position="static"
       sx={{
-        backgroundColor: darkMode ? "black" : "white", // Fix dark mode background here
-        color: darkMode ? "white" : "black", // Text color should also switch
+        background: darkMode
+          ? "linear-gradient(90deg, #0f2027, #203a43, #2c5364)"
+          : "linear-gradient(90deg, #ffffff, #f0f0f0)",
+        color: darkMode ? "#E5F3F5" : "#000",
+        boxShadow: "none",
+        transition: "all 0.5s ease-in-out",
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Logo Title */}
         <Box
           sx={{
             display: "inline-flex",
             alignItems: "center",
-            paddingX: "10px",
-            paddingY: "3px",
+            px: 2,
+            py: 0.5,
             borderRadius: "40px",
-            background: "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)",
-            transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-out", 
-            // Gradient for dark mode
-            border: darkMode ? "2px solid #5BB9B4" : "2px solid #1C3B52", // Adjust border color
-            gap: "8px",
+            background: darkMode
+              ? "linear-gradient(90deg, #0f3443 0%, #34e89e 100%)"
+              : "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)",
+            border: "2px solid",
+            borderColor: darkMode ? "#5BB9B4" : "#1C3B52",
+            boxShadow: darkMode
+              ? "0 0 10px #2EB9A3"
+              : "0 0 4px rgba(0,0,0,0.1)",
+            gap: 1,
           }}
         >
           <Typography
             sx={{
-              color: darkMode ? "#E5F3F5" : "#333", // Adjust text color for dark mode
-              transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-out", 
+              color: darkMode ? "#E5F3F5" : "#fff",
               fontSize: "20px",
               fontWeight: 400,
               fontFamily: "Roboto, sans-serif",
@@ -75,9 +71,9 @@ function Navbar({ darkMode, setDarkMode }) {
           </Typography>
           <Typography
             sx={{
-              color: darkMode ? "#E5F3F5" : "#333", // Adjust text color for dark mode
-              fontSize: "24px",
-              fontWeight: 700,
+              color: darkMode ? "#E5F3F5" : "#fff",
+              fontSize: "20px",
+              fontWeight: 400,
               fontFamily: "Roboto, sans-serif",
             }}
           >
@@ -85,6 +81,7 @@ function Navbar({ darkMode, setDarkMode }) {
           </Typography>
         </Box>
 
+        {/* Menu Buttons (for future pages) */}
         <Box
           sx={{
             flexGrow: 1,
@@ -100,39 +97,25 @@ function Navbar({ darkMode, setDarkMode }) {
           ))}
         </Box>
 
+        {/* Right Side Icons */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <IconButton onClick={toggleDarkMode} color="inherit">
+          {/* Dark Mode Toggle */}
+          <IconButton
+            onClick={toggleDarkMode}
+            sx={{
+              transition: "transform 0.3s ease, color 0.3s ease",
+              "&:hover": { transform: "scale(1.2)" },
+              color: darkMode ? "#FFD700" : "#333",
+            }}
+          >
             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
 
+          {/* Mobile Menu Icon */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              onClick={toggleDarkMode}
-              color="inherit"
-              sx={{
-                transition: "transform 0.3s ease, color 0.3s ease",
-                "&:hover": {
-                  transform: "rotate(20deg)",
-                },
-              }}
-            >
-              {darkMode ? (
-                <LightModeIcon
-                  sx={{
-                    color: "#FFD700", // Yellow
-                    transition: "color 0.3s ease, transform 0.3s ease",
-                  }}
-                />
-              ) : (
-                <DarkModeIcon
-                  sx={{
-                    color: "#ffffff", // White
-                    transition: "color 0.3s ease, transform 0.3s ease",
-                  }}
-                />
-              )}
+            <IconButton onClick={handleOpenNavMenu}>
+              <MenuIcon sx={{ color: darkMode ? "#fff" : "#000" }} />
             </IconButton>
-
             <Menu
               anchorEl={anchorElNav}
               open={Boolean(anchorElNav)}
@@ -146,9 +129,10 @@ function Navbar({ darkMode, setDarkMode }) {
             </Menu>
           </Box>
 
+          {/* Avatar & Settings */}
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="User" src="/static/images/avatar/1.jpg" />
+              <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" />
             </IconButton>
           </Tooltip>
           <Menu
@@ -166,6 +150,6 @@ function Navbar({ darkMode, setDarkMode }) {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Navbar;

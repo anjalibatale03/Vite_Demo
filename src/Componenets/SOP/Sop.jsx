@@ -1,11 +1,11 @@
-import React from "react";
+
 import { Grid, Box } from "@mui/material";
 import SopTask from "../SOP/SopTask";
 import CommentsPanel from "../SOP/CommentsPanel";
 import IncidentDetails from "../SOP/IncidentDetails";
 import Footer from "../Footer/Footer";
 
-function Dashboard({ darkMode, setDarkMode }) {
+function Sop({ darkMode, setDarkMode }) {
   return (
     <>
       <Box
@@ -17,14 +17,14 @@ function Dashboard({ darkMode, setDarkMode }) {
           transition: "background-color 0.5s ease-in-out, color 0.5s ease-in-out", // 👈 Add this
         }}
       >
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={9}>
             <SopTask darkMode={darkMode} setDarkMode={setDarkMode} />
           </Grid>
           <Grid item xs={12} md={3}>
             <CommentsPanel darkMode={darkMode} setDarkMode={setDarkMode} />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} >
             <IncidentDetails darkMode={darkMode} setDarkMode={setDarkMode} />
           </Grid>
         </Grid>
@@ -34,4 +34,4 @@ function Dashboard({ darkMode, setDarkMode }) {
   );
 }
 
-export default Dashboard;
+export default Sop;

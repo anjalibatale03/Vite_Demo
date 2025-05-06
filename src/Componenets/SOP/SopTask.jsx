@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -13,8 +12,7 @@ import {
 } from "@mui/material";
 import { Search, Visibility, AddCircleOutline } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-
-const EnquiryCard = styled("div")(({ theme }) => ({
+const EnquiryCard = styled("div")(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -24,7 +22,7 @@ const EnquiryCard = styled("div")(({ theme }) => ({
   color: "black",
 }));
 
-const EnquiryCardBody = styled("div")(({ theme }) => ({
+const EnquiryCardBody = styled("tr")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -36,7 +34,7 @@ const EnquiryCardBody = styled("div")(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#334" : "#ccc"}`,
 }));
 
-const StyledCardContent = styled(Box)({
+const StyledCardContent = styled("td")({
   padding: "0 8px",
   display: "flex",
   alignItems: "center",
@@ -66,6 +64,30 @@ const tasks = [
     date: "6/05/2025",
     time: "14:03:27",
     action: "Dispatch",
+  },
+  {
+    id: 3,
+    taskName: "Flood",
+    description: "Unknown",
+    initiatedBy: "User",
+    duration: "1:30:00",
+    status: "Completed",
+    mode: "Automatic",
+    date: "6/05/2025",
+    time: "14:03:27",
+    action: "Create Log",
+  },
+  {
+    id: 3,
+    taskName: "Flood",
+    description: "Unknown",
+    initiatedBy: "User",
+    duration: "1:30:00",
+    status: "Completed",
+    mode: "Automatic",
+    date: "6/05/2025",
+    time: "14:03:27",
+    action: "Create Log",
   },
   {
     id: 3,
@@ -119,7 +141,10 @@ function SopTask({ darkMode }) {
         />
       </Box>
 
-      <Paper elevation={3} sx={{ padding: 2, borderRadius: 3, backgroundColor: bgColor }}>
+      <Paper
+        elevation={3}
+        sx={{ padding: 2, borderRadius: 3, backgroundColor: bgColor }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TableContainer>
@@ -173,7 +198,10 @@ function SopTask({ darkMode }) {
                         <StyledCardContent style={{ flex: 1 }}>
                           <Typography
                             sx={{
-                              color: item.status === "Completed" ? "#00e676" : "#f44336",
+                              color:
+                                item.status === "Completed"
+                                  ? "#00e676"
+                                  : "#f44336",
                               fontWeight: "bold",
                             }}
                           >
@@ -184,15 +212,23 @@ function SopTask({ darkMode }) {
                           <Typography>{item.mode}</Typography>
                         </StyledCardContent>
                         <StyledCardContent style={{ flex: 1 }}>
-                          <Button size="small" variant="contained" color="primary">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                          >
                             {item.action}
                           </Button>
                         </StyledCardContent>
                         <StyledCardContent style={{ flex: 1 }}>
-                          <AddCircleOutline sx={{ color: "#00f0c0", cursor: "pointer" }} />
+                          <AddCircleOutline
+                            sx={{ color: "#00f0c0", cursor: "pointer" }}
+                          />
                         </StyledCardContent>
                         <StyledCardContent style={{ flex: 1 }}>
-                          <Visibility sx={{ color: "#00f0c0", cursor: "pointer" }} />
+                          <Visibility
+                            sx={{ color: "#00f0c0", cursor: "pointer" }}
+                          />
                         </StyledCardContent>
                       </EnquiryCardBody>
                     ))

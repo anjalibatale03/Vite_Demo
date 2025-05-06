@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
-import Dashboard from "./Componenets/SOP/Dashboard";
+import Sop from "./Componenets/SOP/Sop";
 import Login from "./Componenets/Login/Login";
 import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
 import Footer from "./Componenets/Footer/Footer";
@@ -22,10 +22,12 @@ function App() {
     [darkMode]
   );
 
-  const hideSidebarRoutes = ["/alert-panel", "/dashboard"]; // ✅ Use exact paths here
+  const hideSidebarRoutes = ["/alert-panel", "/Sop"]; // ✅ Use exact paths here
   const shouldHideSidebar = hideSidebarRoutes.includes(location.pathname);
   
-  
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,9 +41,9 @@ function App() {
         <div style={{ flex: 1 }}>
         {!shouldHideSidebar && <Sidebar darkMode={darkMode} />}
 
-          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <Routes>
-            <Route path="/Dashboard" element={<Dashboard darkMode={darkMode} setDarkMode={setDarkMode} />} />
+            <Route path="/Sop" element={<Sop darkMode={darkMode} setDarkMode={setDarkMode} />} />
             <Route path="/Login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
             <Route path="/alert-panel" element={<AlertPanel darkMode={darkMode} setDarkMode={setDarkMode} />} />
           </Routes>
