@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
+import Footer from "./Componenets/Footer/Footer";
 import Dashboard from "./Componenets/Dashboard/Dashboard";
 import Login from "./Componenets/Login/Login";
 import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/Login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
             <Route path="/alert-panel" element={<AlertPanel darkMode={darkMode} setDarkMode={setDarkMode} />} />
           </Routes>
+          <Footer />
         </div>
       </div>
     </ThemeProvider>

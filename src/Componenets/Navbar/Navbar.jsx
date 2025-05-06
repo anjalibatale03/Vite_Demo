@@ -12,31 +12,33 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
- 
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+
 const pages = [];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
- 
+const settings = ["Profile", "Logout"];
+
 function Navbar({ darkMode, setDarkMode }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
- 
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
- 
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
- 
+
   const handleCloseMenu = () => {
     setAnchorElNav(null);
     setAnchorElUser(null);
   };
- 
+
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
   };
- 
+
   return (
     <AppBar
       position="static"
@@ -81,7 +83,7 @@ function Navbar({ darkMode, setDarkMode }) {
             DMS
           </Typography>
         </Box>
- 
+
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center", gap: 2 }}>
           {pages.map((page) => (
             <Button key={page} sx={{ color: darkMode ? "white" : "black" }}>
@@ -89,12 +91,12 @@ function Navbar({ darkMode, setDarkMode }) {
             </Button>
           ))}
         </Box>
- 
+
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <IconButton onClick={toggleDarkMode} color="inherit">
             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
- 
+
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
               <MenuIcon />
@@ -107,7 +109,7 @@ function Navbar({ darkMode, setDarkMode }) {
               ))}
             </Menu>
           </Box>
- 
+
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="User" src="/static/images/avatar/1.jpg" />
@@ -125,5 +127,5 @@ function Navbar({ darkMode, setDarkMode }) {
     </AppBar>
   );
 }
- 
+
 export default Navbar;

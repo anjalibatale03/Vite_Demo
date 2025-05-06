@@ -79,7 +79,7 @@ const Sidebar = () => {
                 <Box
                     sx={{
                         position: "absolute",
-                        left: open ? 210 : 80,
+                        left: open ? 218 : 80,
                         top: "5em",
                         width: "auto",
                         background: "white",
