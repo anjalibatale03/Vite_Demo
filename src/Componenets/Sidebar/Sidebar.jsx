@@ -9,15 +9,22 @@ import {
     Box,
 } from "@mui/material";
 import { FaCloudSun } from "react-icons/fa";
- 
+import weatherImg from "../../assets/Cloud angled rain zap.png";
+import heatWatchImg from "../../assets/Group 427319122.png";
+import cycloneImg from "../../assets/Tornado.png";
+import droughtImg from "../../assets/Sun.png";
+import nowcastImg from "../../assets/f1faf7e49dc03a9d97669947c2ea71a1f7b90dd3.png";
+import floodImg from "../../assets/Cloud angled rain zap.png";
+import waterStressImg from "../../assets/Big rain drops.png";
+
 const menuItems = [
-    { text: "Weather Forecast", icon: <FaCloudSun />, id: "weather" },
-    { text: "Heat Watch", icon: <FaCloudSun />, id: "heat-watch" },
-    { text: "Cyclone", icon: <FaCloudSun />, id: "cyclone" },
-    { text: "Drought", icon: <FaCloudSun />, id: "drought" },
-    { text: "Nowcast Weather", icon: <FaCloudSun />, id: "Nowcast Weather" },
-    { text: "Flood Forecast", icon: <FaCloudSun />, id: "flood-control" },
-    { text: "Drinking Water Stress", icon: <FaCloudSun />, id: "service-wise" },
+    { text: "Weather Forecast", img: weatherImg, id: "weather" },
+    { text: "Heat Watch", img: heatWatchImg, id: "heat-watch" },
+    { text: "Cyclone", img: cycloneImg, id: "cyclone" },
+    { text: "Drought", img: droughtImg, id: "drought" },
+    { text: "Nowcast Weather", img: nowcastImg, id: "Nowcast Weather" },
+    { text: "Flood Forecast", img: floodImg, id: "flood-control" },
+    { text: "Drinking Water Stress", img: waterStressImg, id: "service-wise" },
 ];
 
 const Sidebar = () => {
@@ -63,8 +70,8 @@ const Sidebar = () => {
                             }}
                             onClick={() => setShowWeatherPanel(item.id === "weather")}
                         >
-                            <ListItemIcon sx={{ color: "white", minWidth: 40 }}>
-                                {item.icon}
+                            <ListItemIcon sx={{ minWidth: 40 }}>
+                                <img src={item.img} alt={item.text} style={{ width: 24, height: 24 }} />
                             </ListItemIcon>
                             <ListItemText
                                 primary={item.text}
@@ -72,6 +79,7 @@ const Sidebar = () => {
                             />
                         </ListItemButton>
                     ))}
+
                 </List>
             </Drawer>
 
