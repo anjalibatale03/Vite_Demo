@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Routes, Route, useLocation } from "react-router-dom"; 
+import { Routes, Route, useNavigate ,useLocation} from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
@@ -10,6 +10,7 @@ import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const location = useLocation();
 
   const theme = useMemo(
