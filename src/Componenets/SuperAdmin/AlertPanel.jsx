@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
     Box, CardContent, Typography, Table, TableBody, TableContainer,
-    TableHead, TableRow, Grid, Checkbox
+    TableHead, TableRow, Grid, Checkbox, CircularProgress
 } from '@mui/material';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
@@ -21,14 +21,16 @@ const EnquiryCardBody = styled('div')({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    background: "#1C223C",
-    color: 'white',
-    marginTop: '0.5em'
+    marginTop: '0.5em',
+    borderRadius: '8px',
+    position: 'relative'
 });
 
 const StyledCardContent = styled(CardContent)({
     padding: '8px 12px',
     fontSize: '12px',
+    display: 'flex',
+    alignItems: 'center',
 });
 
 const alertData = [
@@ -48,7 +50,7 @@ const alertData = [
         location: 'North Goa',
         alertType: 'Unknown',
         trigger: 'Trigger',
-        status: '0',
+        status: '10%',
     },
     {
         id: 3,
@@ -57,7 +59,7 @@ const alertData = [
         location: 'North Goa',
         alertType: 'Unknown',
         trigger: 'Trigger',
-        status: '0',
+        status: '30%',
     },
     {
         id: 4,
@@ -66,20 +68,11 @@ const alertData = [
         location: 'North Goa',
         alertType: 'Unknown',
         trigger: 'Trigger',
-        status: '0',
-    },
-    {
-        id: 5,
-        incidentId: '2023052400005',
-        eventDateTime: '4-04-2025 13:44:07',
-        location: 'North Goa',
-        alertType: 'Unknown',
-        trigger: 'Trigger',
-        status: '0',
+        status: '80%',
     },
 ];
 
-const AlertPanel = () => {
+const AlertPanel = ({ darkMode }) => {
     const [selected, setSelected] = useState([]);
 
     const handleCheckboxChange = (id) => {
@@ -99,83 +92,103 @@ const AlertPanel = () => {
                             <TableHead>
                                 <TableRow>
                                     <EnquiryCard>
-                                        <StyledCardContent style={{ flex: 0.2 }}>
-                                        </StyledCardContent>
+                                        <StyledCardContent style={{ flex: 0.2 }} />
                                         <StyledCardContent style={{ flex: 0.3, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Sr. No</Typography>
+                                            <Typography variant="subtitle2">Sr. No</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 1.2, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Incident ID</Typography>
+                                            <Typography variant="subtitle2">Incident ID</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 1.2, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Event Date & Time</Typography>
+                                            <Typography variant="subtitle2">Event Date & Time</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 1, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Location</Typography>
+                                            <Typography variant="subtitle2">Location</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 1, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Alert Type</Typography>
+                                            <Typography variant="subtitle2">Alert Type</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 1, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Trigger</Typography>
+                                            <Typography variant="subtitle2">Trigger</Typography>
                                         </StyledCardContent>
                                         <StyledCardContent style={{ flex: 0.8, borderRight: "1px solid black" }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>Status</Typography>
+                                            <Typography variant="subtitle2">Status</Typography>
                                         </StyledCardContent>
                                     </EnquiryCard>
                                 </TableRow>
                             </TableHead>
 
                             <TableBody>
-                                {alertData.map((item, index) => (
-                                    <EnquiryCardBody key={item.id}>
-                                        <StyledCardContent style={{ flex: 0.2 }}>
-                                            <Checkbox
-                                                checked={selected.includes(item.id)}
-                                                onChange={() => handleCheckboxChange(item.id)}
-                                                sx={{
-                                                    color: 'white',
-                                                    '&.Mui-checked': {
+                                {alertData.map((item, index) => {
+                                    const normalizedValue = parseInt(item.status.replace('%', ''), 10) || 0;
+                                    return (
+                                        <EnquiryCardBody
+                                            key={item.id}
+                                            sx={{
+                                                backgroundColor: darkMode ? "#1C223C" : "#1C223C",
+                                                color: darkMode ? "white" : "white",
+                                            }}
+                                        >
+                                            <StyledCardContent style={{ flex: 0.2 }}>
+                                                <Checkbox
+                                                    checked={selected.includes(item.id)}
+                                                    onChange={() => handleCheckboxChange(item.id)}
+                                                    sx={{
                                                         color: 'white',
-                                                    },
-                                                }}
-                                            />
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 0.3 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{index + 1}</Typography>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 1.2 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{item.incidentId}</Typography>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 1.2 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{item.eventDateTime}</Typography>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 1 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{item.location}</Typography>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 1 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{item.alertType}</Typography>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 1 }}>
-                                            <Box
-                                                sx={{
-                                                    backgroundColor: item.trigger === 'Triggered' ? 'green' : 'red',
-                                                    color: 'white',
-                                                    px: 1,
-                                                    py: 0.5,
-                                                    borderRadius: '6px',
-                                                    textAlign: 'center',
-                                                    width: 'fit-content'
-                                                }}
-                                            >
-                                                {item.trigger}
-                                            </Box>
-                                        </StyledCardContent>
-                                        <StyledCardContent style={{ flex: 0.8 }}>
-                                            <Typography variant="subtitle2" sx={{ lineHeight: '1.2' }}>{item.status}</Typography>
-                                        </StyledCardContent>
-                                    </EnquiryCardBody>
-                                ))}
+                                                        '&.Mui-checked': {
+                                                            color: 'white',
+                                                        },
+                                                    }}
+                                                />
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 0.3 }}>
+                                                <Typography variant="subtitle2">{index + 1}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 1.2 }}>
+                                                <Typography variant="subtitle2">{item.incidentId}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 1.2 }}>
+                                                <Typography variant="subtitle2">{item.eventDateTime}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 1 }}>
+                                                <Typography variant="subtitle2">{item.location}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 1 }}>
+                                                <Typography variant="subtitle2">{item.alertType}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 1 }}>
+                                                <Typography variant="subtitle2">{item.trigger}</Typography>
+                                            </StyledCardContent>
+                                            <StyledCardContent style={{ flex: 0.8, position: 'relative', display: 'flex', justifyContent: 'center' }}>
+                                                <Box position="relative" display="inline-flex">
+                                                    <CircularProgress
+                                                        variant="determinate"
+                                                        value={normalizedValue}
+                                                        size={40}
+                                                        thickness={4}
+                                                        sx={{
+                                                            color: normalizedValue > 0 ? '#4df2ce' : '#ff5e5e',
+                                                        }}
+                                                    />
+                                                    <Box
+                                                        top={0}
+                                                        left={0}
+                                                        bottom={0}
+                                                        right={0}
+                                                        position="absolute"
+                                                        display="flex"
+                                                        alignItems="center"
+                                                        justifyContent="center"
+                                                    >
+                                                        <Typography variant="caption" color="white">
+                                                            {`${normalizedValue}%`}
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                            </StyledCardContent>
+                                        </EnquiryCardBody>
+                                    );
+                                })}
                             </TableBody>
                         </Table>
                     </TableContainer>
@@ -191,7 +204,6 @@ const AlertPanel = () => {
                             View All
                         </Button>
                     </Box>
-
                 </Grid>
 
                 <Grid item xs={12} md={4}>
@@ -202,7 +214,7 @@ const AlertPanel = () => {
                         border: '1px solid #ffeeba'
                     }}>
                         <Typography variant="h6" sx={{ color: '#856404' }}>
-                            Hey Welcome to Alert Panel!
+                            Hey! Welcome to the Alert Panel!
                         </Typography>
                     </Box>
                 </Grid>
