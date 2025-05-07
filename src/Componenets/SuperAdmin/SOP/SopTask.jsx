@@ -21,8 +21,7 @@ const EnquiryCard = styled("div")(() => ({
   padding: "6px 12px",
   color: "black",
 }));
-
-const EnquiryCardBody = styled("tr")(({ theme }) => ({
+const EnquiryCardBody = styled("tr")(({ theme, status }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -31,7 +30,25 @@ const EnquiryCardBody = styled("tr")(({ theme }) => ({
   marginTop: "0.5em",
   borderRadius: "8px",
   padding: "10px 12px",
-  borderBottom: `1px solid ${theme.palette.mode === "dark" ? "#334" : "#ccc"}`,
+  border: `1px solid ${
+    status === "Completed"
+      ? "#00e676"
+      : status === "Pending"
+      ? "#f44336"
+      : "#ccc"
+  }`,
+  transition: "all 0.3s ease",
+  cursor: "pointer",
+
+  "&:hover": {
+    boxShadow: `0 0 8px ${
+      status === "Completed"
+        ? "#00e67699"
+        : status === "Pending"
+        ? "#f4433699"
+        : "#88888855"
+    }`,
+  },
 }));
 
 const StyledCardContent = styled("td")({
@@ -110,7 +127,18 @@ function SopTask({ darkMode }) {
   return (
     <>
       <Box display="flex" alignItems="center" gap={2} mb={2}>
-        <Typography variant="h6" sx={{ color: textColor }}>
+        <Typography
+          variant="h6"
+          sx={{
+            color: textColor,
+            Roboto: 400,
+            fontSize: "24px",
+            fontWeight: 500,
+            lineHeight: "16px",
+            verticalAlign: "middle",
+            paragraphSpacing: "16px",
+          }}
+        >
           <strong>Task</strong>
         </Typography>
         <TextField
@@ -164,8 +192,10 @@ function SopTask({ darkMode }) {
                       "Comments",
                       "View",
                     ].map((label, idx) => (
-                      <StyledCardContent key={idx} style={{ flex: 1 }}>
-                        <Typography variant="subtitle2">{label}</Typography>
+                      <StyledCardContent key={idx} style={{  flex: 1,
+                        display: "flex",
+                        justifyContent: "center",}}>
+                        <Typography variant="subtitle2" fontWeight={500}>{label}</Typography>
                       </StyledCardContent>
                     ))}
                   </EnquiryCard>
@@ -179,55 +209,137 @@ function SopTask({ darkMode }) {
                     </Box>
                   ) : (
                     tasks.map((item) => (
-                      <EnquiryCardBody key={item.id}>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.taskName}</Typography>
+                      <EnquiryCardBody key={item.id} status={item.status}>
+                       <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.taskName}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.description}</Typography>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.description}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.initiatedBy}</Typography>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.initiatedBy}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.duration}</Typography>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.duration}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.date + " " + item.time}</Typography>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.date + " " + item.time}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
                           <Typography
                             sx={{
                               color:
                                 item.status === "Completed"
                                   ? "#00e676"
                                   : "#f44336",
-                              fontWeight: "bold",
+                            
                             }}
+                            variant="subtitle2"
                           >
                             {item.status}
                           </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
-                          <Typography>{item.mode}</Typography>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Typography variant="subtitle2">
+                            {item.mode}
+                          </Typography>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
                           <Button
                             size="small"
                             variant="contained"
                             color="primary"
+                            sx={{ minWidth: 100 }} // Set consistent width
                           >
                             {item.action}
                           </Button>
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
                           <AddCircleOutline
-                            sx={{ color: "#00f0c0", cursor: "pointer" }}
+                            sx={{
+                              color: "#00f0c0",
+                              cursor: "pointer",
+                              fontSize: 28,
+                            }}
                           />
                         </StyledCardContent>
-                        <StyledCardContent style={{ flex: 1 }}>
+                        <StyledCardContent
+                          style={{
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
                           <Visibility
-                            sx={{ color: "#00f0c0", cursor: "pointer" }}
+                            sx={{
+                              color: "#00f0c0",
+                              cursor: "pointer",
+                              fontSize: 28,
+                            }}
                           />
                         </StyledCardContent>
                       </EnquiryCardBody>
