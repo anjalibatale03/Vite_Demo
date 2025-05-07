@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
-const pages = []; // Add pages here if needed
+const pages = [];
 const settings = ["Profile", "Logout"];
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
@@ -40,7 +40,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Logo Title */}
         <Box
           sx={{
             display: "inline-flex",
@@ -51,18 +50,18 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             background: darkMode
               ? "linear-gradient(90deg, #0f3443 0%, #34e89e 100%)"
               : "linear-gradient(90deg, #1C3B52 0%, #2EB9A3 100%)",
-            border: "2px solid",
+            border: "2px solid grey",
             borderColor: darkMode ? "#5BB9B4" : "#1C3B52",
-            boxShadow: darkMode
-              ? "0 0 10px #2EB9A3"
-              : "0 0 4px rgba(0,0,0,0.1)",
+            // boxShadow: darkMode
+            //   ? "0 0 10px #2EB9A3"
+            //   : "0 0 4px rgba(0,0,0,0.1)",
             gap: 1,
           }}
         >
           <Typography
             sx={{
               color: darkMode ? "#E5F3F5" : "#fff",
-              fontSize: "20px",
+              fontSize: "15px",
               fontWeight: 400,
               fontFamily: "Roboto, sans-serif",
             }}
@@ -81,7 +80,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           </Typography>
         </Box>
 
-        {/* Menu Buttons (for future pages) */}
         <Box
           sx={{
             flexGrow: 1,
@@ -97,9 +95,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           ))}
         </Box>
 
-        {/* Right Side Icons */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          {/* Dark Mode Toggle */}
           <IconButton
             onClick={toggleDarkMode}
             sx={{
@@ -111,7 +107,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
 
-          {/* Mobile Menu Icon */}
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton onClick={handleOpenNavMenu}>
               <MenuIcon sx={{ color: darkMode ? "#fff" : "#000" }} />
@@ -129,10 +124,13 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             </Menu>
           </Box>
 
-          {/* Avatar & Settings */}
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="User Avatar" src="/static/images/avatar/1.jpg" />
+              <Avatar
+                alt="User Avatar"
+                src="/static/images/avatar/1.jpg"
+                sx={{ bgcolor: '#5FECC8', color: 'white' }}
+              />
             </IconButton>
           </Tooltip>
           <Menu
