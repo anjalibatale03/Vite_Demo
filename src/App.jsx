@@ -11,6 +11,7 @@ import Footer from "./Componenets/Footer/Footer";
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const theme = useMemo(
     () =>
@@ -32,6 +33,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
+
+        {!isLoggedIn ? (
+              // 🔐 Show login only
+              <Login setIsLoggedIn={setIsLoggedIn} darkMode={darkMode} setDarkMode={setDarkMode} />
+            ) : (
       <div  style={{
           display: "flex",
           minHeight: "100vh",
@@ -50,6 +57,7 @@ function App() {
           <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
       </div>
+        )}
     </ThemeProvider>
   );
 }
