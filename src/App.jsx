@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import Sidebar from "./Componenets/Sidebar/Sidebar";
 import Navbar from "./Componenets/Navbar/Navbar";
-import Sop from "./Componenets/SOP/Sop";
+import Sop from "./Componenets/SuperAdmin/SOP/Sop";
 import Login from "./Componenets/Login/Login";
 import AlertPanel from "./Componenets/SuperAdmin/AlertPanel";
 import Footer from "./Componenets/Footer/Footer";
