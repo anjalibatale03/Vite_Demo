@@ -14,6 +14,7 @@ const EnquiryCard = styled('div')({
     background: "#5FECC8",
     color: 'black',
     borderRadius: '8px 10px 0 0',
+    fontWeight: '600',
 });
 
 const EnquiryCardBody = styled('div')({
@@ -31,7 +32,11 @@ const StyledCardContent = styled(CardContent)({
     fontSize: '12px',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
+    whiteSpace: 'nowrap',
+    height: '100%',
 });
+
 
 const alertData = [
     {
@@ -125,8 +130,8 @@ const AlertPanel = ({ darkMode }) => {
                                         <EnquiryCardBody
                                             key={item.id}
                                             sx={{
-                                                backgroundColor: darkMode ? "#1C223C" : "#1C223C",
-                                                color: darkMode ? "white" : "white",
+                                                backgroundColor: darkMode ? "#1C223C" : "#FFFFFF",
+                                                color: darkMode ? "white" : "black",
                                             }}
                                         >
                                             <StyledCardContent style={{ flex: 0.2 }}>
@@ -134,9 +139,9 @@ const AlertPanel = ({ darkMode }) => {
                                                     checked={selected.includes(item.id)}
                                                     onChange={() => handleCheckboxChange(item.id)}
                                                     sx={{
-                                                        color: 'white',
+                                                        color: darkMode ? "white" : "black",
                                                         '&.Mui-checked': {
-                                                            color: 'white',
+                                                            color: darkMode ? "white" : "black",
                                                         },
                                                     }}
                                                 />
@@ -157,7 +162,22 @@ const AlertPanel = ({ darkMode }) => {
                                                 <Typography variant="subtitle2">{item.alertType}</Typography>
                                             </StyledCardContent>
                                             <StyledCardContent style={{ flex: 1 }}>
-                                                <Typography variant="subtitle2">{item.trigger}</Typography>
+                                                <Button
+                                                    style={{
+                                                        width: '100%',
+                                                        textAlign: 'left',
+                                                        backgroundColor: item.trigger === 'Triggered' ? '#00BFA6' : '#FF4C4C',
+                                                        color: 'black',
+                                                        borderRadius: '10px',
+                                                    }}
+                                                >
+                                                    <Typography variant="subtitle2"
+                                                        style={{
+                                                            color: darkMode ? "white" : "black",
+                                                        }}>
+                                                        {item.trigger.charAt(0).toUpperCase() + item.trigger.slice(1).toLowerCase()}
+                                                    </Typography>
+                                                </Button>
                                             </StyledCardContent>
                                             <StyledCardContent style={{ flex: 0.8, position: 'relative', display: 'flex', justifyContent: 'center' }}>
                                                 <Box position="relative" display="inline-flex">
@@ -180,7 +200,11 @@ const AlertPanel = ({ darkMode }) => {
                                                         alignItems="center"
                                                         justifyContent="center"
                                                     >
-                                                        <Typography variant="caption" color="white">
+                                                        <Typography variant="caption"
+                                                            sx={{
+                                                                color: darkMode ? "white" : "black",
+                                                            }}
+                                                        >
                                                             {`${normalizedValue}%`}
                                                         </Typography>
                                                     </Box>
@@ -219,7 +243,7 @@ const AlertPanel = ({ darkMode }) => {
                     </Box>
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     );
 };
 
