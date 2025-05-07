@@ -1,13 +1,21 @@
 import { Box, Typography, TextField, Button, FormControl, InputLabel, OutlinedInput, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import loginBg from '../../assets/bg_login.png';
+import loginBg from '../../assets/Bg_login1.png';
 import Spero from '../../assets/spero1.png';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Login({ setIsLoggedIn }) {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const navigate = useNavigate();
+
+
+    const handleLogin = () => {
+      
+        navigate('/alert-panel');
+    };
 
     return (
         <Box sx={{ height: '100vh', width: '100%', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: isSmallScreen ? 'column' : 'row' }}>
@@ -125,7 +133,7 @@ function Login({ setIsLoggedIn }) {
                         <Button
                             fullWidth
                             variant="contained"
-                            onClick={() => setIsLoggedIn(true)}
+                            onClick={handleLogin}
                             sx={{
                                 mt: 2,
                                 width: '50%',
