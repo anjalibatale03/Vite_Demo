@@ -13,17 +13,10 @@ function IncidentDetails({ darkMode }) {
   const labelColor = darkMode ? '#5FECC8' : '#1976d2';
   const textColor = darkMode ? '#ffffff' : '#000000';
   const borderColor = darkMode ? '#1e1e1e' : '#ccc';
-  const fontFamily = 'Roboto, sans-serif';
-
-  const boxStyle = {
-    mb: 2,
-    pb: 1.5,
-    borderBottom: `1px solid ${borderColor}`,
-  };
 
   return (
     <>
-      <Typography variant="h6" mb={2} fontWeight="bold" color={labelColor} sx={{ fontFamily }}>
+      <Typography variant="h6" mb={2} fontWeight="bold" color={labelColor}>
         Incident Details
       </Typography>
 
@@ -35,7 +28,6 @@ function IncidentDetails({ darkMode }) {
           backgroundColor: darkMode ? '#0a1929' : '#fff',
           color: textColor,
           transition: 'all 0.3s ease',
-          padding: 2,
         }}
       >
         <Grid container>
@@ -46,13 +38,13 @@ function IncidentDetails({ darkMode }) {
             md={3}
             sx={{ borderRight: { md: `1px solid ${borderColor}` }, pr: { md: 2 }, mb: { xs: 2, md: 0 } }}
           >
-            <Box sx={boxStyle}>
-              <Typography   sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Incident ID</Typography>
-              <Typography variant="subtitle2" sx={{ fontFamily }}>20230524000004</Typography>
+            <Box mb={2}>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Incident ID</Typography>
+              <Typography>20230524000004</Typography>
             </Box>
-            <Box>
-              <Typography  variant="subtitle2" sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Incident Type</Typography>
-              <Typography variant="subtitle2" sx={{ fontFamily }}>Flood</Typography>
+            <Box mb={2}>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Incident Type</Typography>
+              <Typography>Flood</Typography>
             </Box>
           </Grid>
 
@@ -63,41 +55,41 @@ function IncidentDetails({ darkMode }) {
             md={4}
             sx={{ borderRight: { md: `1px solid ${borderColor}` }, px: { md: 2 }, mb: { xs: 2, md: 0 } }}
           >
-            <Box sx={boxStyle}>
-              <Typography variant="subtitle2" sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Response Procedure</Typography>
-              <Typography variant="subtitle2" sx={{ fontFamily }}>Mass intimation to public, Media, Boat, Fisheries</Typography>
+            <Box mb={2}>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Response Procedure</Typography>
+              <Typography>Mass intimation to public, Media, Boat, Fisheries</Typography>
             </Box>
             <Box>
-              <Typography  variant="subtitle2" sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Incident Description</Typography>
-              <Typography  variant="subtitle2" sx={{ fontFamily }}>Flood near Sea</Typography>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Incident Description</Typography>
+              <Typography>Flood near Sea</Typography>
             </Box>
           </Grid>
 
           {/* Right Column */}
           <Grid item xs={12} md={4} pl={{ md: 2 }}>
-            <Box sx={boxStyle}>
-              <Typography  variant="subtitle2" sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Alert Type</Typography>
-              <Typography  variant="subtitle2"sx={{ fontFamily }}>Coast Guard</Typography>
+            <Box mb={2}>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Alert Type</Typography>
+              <Typography>Coast Guard</Typography>
             </Box>
             <Box>
-              <Typography variant="subtitle2" sx={{ color: labelColor, fontWeight: 500, fontFamily }}>Responder Scope</Typography>
+              <Typography sx={{ color: labelColor, fontWeight: 500 }}>Responder Scope</Typography>
               <Stack spacing={1} mt={1}>
                 <Box display="flex" flexWrap="wrap" gap={1}>
                   <FormControlLabel
                     control={<Checkbox defaultChecked sx={{ color: labelColor }} />}
-                    label={<Typography variant="subtitle2" sx={{ fontFamily }}>Police</Typography>}
+                    label="Police"
                   />
                   <FormControlLabel
                     control={<Checkbox sx={{ color: labelColor }} />}
-                    label={<Typography variant="subtitle2" sx={{ fontFamily }}>Fire</Typography>}
+                    label="Fire"
                   />
                   <FormControlLabel
                     control={<Checkbox sx={{ color: labelColor }} />}
-                    label={<Typography variant="subtitle2"  sx={{ fontFamily }}>Marine</Typography>}
+                    label="Marine"
                   />
                   <FormControlLabel
                     control={<Checkbox sx={{ color: labelColor }} />}
-                    label={<Typography variant="subtitle2" sx={{ fontFamily }}>Fisheries</Typography>}
+                    label="Fisheries"
                   />
                 </Box>
                 <Box textAlign="right">

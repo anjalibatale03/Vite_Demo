@@ -3,7 +3,7 @@ import { Grid, Box } from "@mui/material";
 import SopTask from "../SOP/SopTask";
 import CommentsPanel from "../SOP/CommentsPanel";
 import IncidentDetails from "../SOP/IncidentDetails";
-// import Footer from "..";
+import Footer from "../Footer/Footer";
 
 function Sop({ darkMode, setDarkMode }) {
   return (
@@ -29,7 +29,7 @@ function Sop({ darkMode, setDarkMode }) {
           </Grid>
         </Grid>
       </Box>
-      {/* <Footer darkMode={darkMode} setDarkMode={setDarkMode} /> */}
+      <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
     </>
   );
 }
