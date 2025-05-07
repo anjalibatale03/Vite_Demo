@@ -8,7 +8,6 @@ import {
     Typography,
     Box,
 } from "@mui/material";
-import { FaCloudSun } from "react-icons/fa";
 import weatherImg from "../../assets/Cloud angled rain zap.png";
 import heatWatchImg from "../../assets/Group 427319122.png";
 import cycloneImg from "../../assets/Tornado.png";
