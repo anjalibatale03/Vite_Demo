@@ -278,7 +278,7 @@ function SopTask({ darkMode }) {
                                 item.status === "Completed"
                                   ? "#00e676"
                                   : "#f44336",
-                              fontWeight: "bold",
+                            
                             }}
                             variant="subtitle2"
                           >

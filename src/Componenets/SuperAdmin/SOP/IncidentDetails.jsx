@@ -12,7 +12,7 @@ import {
 function IncidentDetails({ darkMode }) {
   const labelColor = darkMode ? '#5FECC8' : '#1976d2';
   const textColor = darkMode ? '#ffffff' : '#000000';
-  const borderColor = darkMode ? '#1e1e1e' : '#ccc';
+  const borderColor = darkMode ? '#7F7F7F' : '#ccc';
   const fontFamily = 'Roboto, sans-serif';
 
   const boxStyle = {
@@ -23,7 +23,7 @@ function IncidentDetails({ darkMode }) {
 
   return (
     <>
-      <Typography variant="h6" mb={2} fontWeight="bold" color={labelColor} sx={{ fontFamily }}>
+      <Typography variant="h6" mb={2}  color={labelColor} sx={{ fontFamily }}>
         Incident Details
       </Typography>
 

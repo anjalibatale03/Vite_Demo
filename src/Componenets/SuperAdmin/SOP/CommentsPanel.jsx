@@ -42,7 +42,7 @@ function CommentsPanel({ darkMode }) {
   return (
     <Paper elevation={3} sx={paperStyle}>
       <Box>
-        <Typography variant="h6" mb={2} sx={{ fontWeight: 'bold' }} color="#5FECC8">
+        <Typography variant="h6" mb={2}  color="#5FECC8">
           Comments
         </Typography>
 
