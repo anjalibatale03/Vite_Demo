@@ -53,11 +53,10 @@ function Login() {
              // Store token and redirect
              if (data.data?.token) {
                 localStorage.setItem('token', data.data.token);
-                setTimeout(() => {
-                  navigate('/alert-panel');
-                }, 100);
-              }
               
+                // Use navigate instead of window.location
+                navigate('/alert-panel');
+              }
               
            else {
             setLoginError('Unexpected response from server.');
