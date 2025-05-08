@@ -52,8 +52,8 @@ function App() {
           
           <Routes>
             {/* Redirect root to login */}
-            <Route path="/" element={<Navigate to="/Login" replace />} />
-            <Route path="/Login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode} />} />
+            <Route path="/" element={<Navigate to="/Login" replace  />} />
+            <Route path="/Login" element={<Login darkMode={darkMode} setDarkMode={setDarkMode}   />} />
             <Route path="/Sop" element={<Sop darkMode={darkMode} setDarkMode={setDarkMode} />} />
             <Route path="/alert-panel" element={<AlertPanel darkMode={darkMode} setDarkMode={setDarkMode} />} />
           </Routes>
